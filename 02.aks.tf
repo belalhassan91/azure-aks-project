@@ -23,6 +23,7 @@ data "azurerm_subscription" "current" {
 module "aks" {
   source                        = "Azure/aks/azurerm"
   version                       = "7.5.0"
+  prefix                        = var.project_name
   cluster_name                  = var.cluster_name
   resource_group_name           = local.resource_group.name
   kubernetes_version            = var.kubernetes_version # don't specify the patch version!
@@ -41,9 +42,9 @@ module "aks" {
   agents_min_count              = var.aks_agents_min_count
   agents_max_count              = var.aks_agents_max_count
   agents_size                   = var.aks_agents_size
-  ingress_application_gateway_enabled = true
-  ingress_application_gateway_name = "${var.cluster_name}-ingress-appgateway"
-  ingress_application_gateway_subnet_id = azurerm_subnet.gateway-subnet.id
+  # ingress_application_gateway_enabled = true
+  # ingress_application_gateway_name = "${var.cluster_name}-ingress-appgateway"
+  # ingress_application_gateway_subnet_id = azurerm_subnet.gateway-subnet.id
   attached_acr_id_map = { 
     acr = azurerm_container_registry.acr.id 
   }
