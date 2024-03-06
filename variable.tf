@@ -60,10 +60,24 @@ variable "aks_gateway_cidr" {
 ####################
 # AKS variabe
 ####################
-
-variable "akssp_name" {
+variable "cluster_name" {
   type    = string
   default = null
+}
+
+variable "kubernetes_version" {
+  type    = string
+  default = "1.28"
+}
+
+variable "os_disk_size_gb" {
+  type    = number
+  default = 60
+}
+
+variable "agents_max_pods" {
+  type    = number
+  default = 50
 }
 
 variable "aks_enable_auto_scaling" {
